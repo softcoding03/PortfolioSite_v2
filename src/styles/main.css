@@ -206,6 +206,7 @@ p {
 
 .experience-branches {
   position: relative;
+  width: 400px
   padding-left: calc(var(--spacing) * 4);
 }
 
