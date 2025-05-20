@@ -11,6 +11,8 @@
   <meta name="description" content="Interactive developer portfolio with a timeline of career milestones">
 </head>
 <body>
+  <div id="interactive-background" class="fixed inset-0 pointer-events-none z-[-1] overflow-hidden"></div>
+  
   <header>
     <div class="header-content">
       <h1>KIM YANG SOO</h1>
@@ -295,6 +297,56 @@
       </div>
     </div>
   </div>
+
+  <script>
+    // Interactive background effect
+    const container = document.getElementById('interactive-background');
+    const mousePosition = { x: 0, y: 0 };
+    const dots = [];
+    let animationFrame;
+
+    // Create dots
+    const numDots = 50;
+    for (let i = 0; i < numDots; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'interactive-dot';
+      dot.style.left = `${Math.random() * 100}%`;
+      dot.style.top = `${Math.random() * 100}%`;
+      container.appendChild(dot);
+      dots.push(dot);
+    }
+
+    function handleMouseMove(e) {
+      mousePosition.x = e.clientX;
+      mousePosition.y = e.clientY;
+    }
+
+    function animate() {
+      dots.forEach((dot) => {
+        const rect = dot.getBoundingClientRect();
+        const dotCenter = {
+          x: rect.left + rect.width / 2,
+          y: rect.top + rect.height / 2
+        };
+
+        const distance = Math.hypot(
+          mousePosition.x - dotCenter.x,
+          mousePosition.y - dotCenter.y
+        );
+
+        const maxDistance = 200;
+        const scale = Math.max(0, 1 - distance / maxDistance);
+
+        dot.style.transform = `scale(${1 + scale})`;
+        dot.style.opacity = `${0.3 + scale * 0.7}`;
+      });
+
+      animationFrame = requestAnimationFrame(animate);
+    }
+
+    window.addEventListener('mousemove', handleMouseMove);
+    animate();
+  </script>
 
   <script type="module" src="src/scripts/utils.js"></script>
   <script type="module" src="src/data/projects.js"></script>
