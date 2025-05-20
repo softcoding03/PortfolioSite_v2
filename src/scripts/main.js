@@ -11,7 +11,6 @@
   const characterEl = document.getElementById('character');
   const timelineEl = document.querySelector('.timeline');
   const sections = document.querySelectorAll('.section');
-  const skillsContainer = document.querySelector('.skills-container');
   
   // Initialize application
   function init() {
@@ -117,30 +116,9 @@
       requestAnimationFrame(() => {
         scrollPercentage = utils.getScrollPercentage();
         updateAll(scrollPercentage);
-        updateSkillsVisibility();
         ticking = false;
       });
       ticking = true;
-    }
-  }
-
-  // Update skills container visibility based on scroll position
-  function updateSkillsVisibility() {
-    if (!skillsContainer) return;
-
-    const introSection = document.getElementById('intro');
-    const aboutSection = document.getElementById('about');
-    
-    if (introSection && aboutSection) {
-      const introTop = introSection.offsetTop;
-      const aboutBottom = aboutSection.offsetTop + aboutSection.offsetHeight;
-      const currentScroll = window.scrollY;
-      
-      if (currentScroll >= introTop && currentScroll <= aboutBottom) {
-        skillsContainer.classList.add('visible');
-      } else {
-        skillsContainer.classList.remove('visible');
-      }
     }
   }
   
