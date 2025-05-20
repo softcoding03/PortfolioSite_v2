@@ -1,8 +1,7 @@
 /* Main styles */
-@import 'timeline.css';
-@import 'character.css';
-@import 'panels.css';
-@import 'animations.css';
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --bg-color: #121212;
