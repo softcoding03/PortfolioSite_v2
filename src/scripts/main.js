@@ -27,11 +27,11 @@
     // Setup touch events for mobile
     setupTouchEvents();
     
-    // Setup skills container observer
-    setupSkillsObserver();
-    
     // Create SVG placeholder files for milestones
     createSvgPlaceholders();
+    
+    // Setup skills container observer
+    setupSkillsObserver();
     
     // Initial update
     requestAnimationFrame(update);
@@ -47,7 +47,15 @@
       { name: 'rocket', path: 'M13.13,22.19L11.5,18.36C13.07,17.78 14.54,17 15.9,16.09L13.13,22.19M5.64,12.5L1.81,10.87L7.91,8.1C7,9.46 6.22,10.93 5.64,12.5M21.61,2.39C21.61,2.39 16.66,0.269 11,5.93C8.81,8.12 7.5,10.53 6.65,12.64C6.37,13.39 6.56,14.21 7.11,14.77L9.24,16.89C9.79,17.45 10.61,17.63 11.36,17.35C13.5,16.53 15.88,15.19 18.07,13C23.73,7.34 21.61,2.39 21.61,2.39M14.54,9.46C13.76,8.68 13.76,7.41 14.54,6.63C15.32,5.85 16.59,5.85 17.37,6.63C18.14,7.41 18.15,8.68 17.37,9.46C16.59,10.24 15.32,10.24 14.54,9.46Z' }
     ];
     
+    // Create the assets directory if it doesn't exist
+    const assetsDir = 'src/assets';
+    
+    // For real implementation, these SVG files would be created
+    // In this environment, we're using inline SVG fallbacks
     console.log('SVG placeholders would be created for:', icons.map(i => i.name).join(', '));
+    
+    // In a real environment, we would create physical SVG files
+    // For this example, we'll use inline SVG fallbacks in the panels.js file
   }
   
   // Setup section intersection observers
@@ -85,21 +93,22 @@
   
   // Update skills container position based on scroll
   function updateSkillsPosition() {
-    if (!skillsContainer || !introSection || window.innerWidth <= 768) return;
+    if (!skillsContainer || !introSection) return;
     
     const introRect = introSection.getBoundingClientRect();
+    const introTop = introRect.top;
+    const introBottom = introRect.bottom;
     const windowHeight = window.innerHeight;
-    const containerHeight = skillsContainer.offsetHeight;
     
-    // Calculate the available space for scrolling
-    const availableSpace = windowHeight - containerHeight;
-    const maxScroll = availableSpace * 0.8; // 80% of available space
-    
-    if (introRect.top <= 0 && introRect.bottom >= containerHeight) {
-      const scrollProgress = Math.abs(introRect.top) / (introRect.height - windowHeight);
+    if (introTop <= 0 && introBottom >= 0) {
+      // Section is partially visible, follow scroll
+      const scrollProgress = Math.abs(introTop) / (introRect.height - windowHeight);
+      const maxScroll = introRect.height - windowHeight;
       const translateY = Math.min(scrollProgress * maxScroll, maxScroll);
+      
       skillsContainer.style.transform = `translateY(${translateY}px)`;
-    } else if (introRect.top > 0) {
+    } else if (introTop > 0) {
+      // Reset position when above intro section
       skillsContainer.style.transform = 'translateY(0)';
     }
   }
@@ -122,7 +131,6 @@
     if (!ticking) {
       requestAnimationFrame(() => {
         updateParallax();
-        updateSkillsPosition();
         ticking = false;
       });
       ticking = true;
@@ -136,7 +144,6 @@
     updateTimelineFromScroll(scrollPercentage);
     updateCharacterPosition(scrollPercentage);
     updateParallax();
-    updateSkillsPosition();
     
     // Make sections visible if they're in the viewport
     sections.forEach(section => {
@@ -216,8 +223,10 @@
 
 // Create character sprite placeholder
 (function createCharacterSprite() {
+  // This would normally generate and save a physical sprite file
+  // For this example, we're creating a small canvas that generates the sprite data
   const canvas = document.createElement('canvas');
-  canvas.width = 32;
+  canvas.width = 32; // Two frames side by side
   canvas.height = 16;
   const ctx = canvas.getContext('2d');
   
@@ -253,6 +262,8 @@
   const img = new Image();
   img.src = spriteDataUrl;
   
+  // In a real implementation, this would save to a file
+  // For this demo, we'll use a data URL as a fallback
   console.log('Pixel character sprite created');
   
   // Add the data URL to the character element as a fallback
