@@ -1,1013 +1,311 @@
-/* Main styles */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-:root {
-  --bg-color: #121212;
-  --primary: #00ffff;
-  --secondary: #9c27b0;
-  --text: #e0e0e0;
-  --text-dark: #a0a0a0;
-  --panel-bg: rgba(30, 30, 30, 0.9);
-  --timeline-height: 2px;
-  --spacing: 8px;
-  --character-size: 16px;
-  --timeline-bottom: 15vh;
-  
-  /* Skill colors */
-  --kotlin-color: #A97BFF;
-  --spring-color: #6DB33F;
-  --mysql-color: #00758F;
-  --java-color: #E76F00;
-  --js-color: #F7DF1E;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: 'JetBrains Mono', monospace;
-  background-color: var(--bg-color);
-  color: var(--text);
-  line-height: 1.5;
-  overflow-x: hidden;
-}
-
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 0 var(--spacing);
-}
-
-header {
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-  position: relative;
-}
-
-.header-content {
-  z-index: 2;
-}
-
-header h1 {
-  font-size: 4rem;
-  margin-bottom: var(--spacing);
-  color: var(--primary);
-}
-
-header p {
-  font-size: 1.2rem;
-  color: var(--text-dark);
-}
-
-.section {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: calc(var(--spacing) * 16) 0;
-  position: relative;
-  margin: calc(var(--spacing) * 8) 0;
-}
-
-.profile-image {
-  width: 300px;
-  height: 300px;
-  margin: 0 auto calc(var(--spacing) * 6);
-  position: relative;
-}
-
-.profile-photo {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 20px;
-  border: 2px solid var(--primary);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.2);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.profile-photo:hover {
-  transform: scale(1.02);
-  box-shadow: 0 0 30px rgba(0, 255, 255, 0.3);
-}
-
-h2 {
-  font-size: 2.5rem;
-  margin-bottom: calc(var(--spacing) * 6);
-  color: var(--primary);
-}
-
-p {
-  font-size: 1.1rem;
-  margin-bottom: calc(var(--spacing) * 2);
-}
-
-.about-content {
-  max-width: 800px;
-  margin: 0 auto calc(var(--spacing) * 4);
-}
-
-.about-content p {
-  margin-bottom: calc(var(--spacing) * 2);
-  line-height: 1.8;
-  word-break: keep-all;
-}
-
-.about-content p strong {
-  color: var(--kotlin-color);
-  font-weight: bold;
-}
-
-/* Experience section highlights */
-.experience-date {
-  color: var(--spring-color);
-  font-weight: bold;
-  margin-bottom: var(--spacing);
-}
-
-.experience-content h3 {
-  color: var(--kotlin-color);
-  margin-bottom: var(--spacing);
-  font-size: 1.4rem;
-}
-
-.experience-details li.highlight {
-  color: var(--mysql-color);
-  font-weight: bold;
-}
-
-/* Achievement highlights */
-.achievement-number {
-  color: var(--kotlin-color);
-  font-weight: bold;
-  font-family: 'Press Start 2P', monospace;
-  font-size: 0.9em;
-}
-
-.achievement-result {
-  color: var(--spring-color);
-  font-weight: bold;
-}
-
-/* Project section highlights */
-.project-card h3 {
-  color: var(--kotlin-color);
-}
-
-.project-period {
-  color: var(--spring-color);
-  font-weight: bold;
-}
-
-.project-achievement {
-  color: var(--mysql-color);
-  font-weight: bold;
-}
-
-/* Modal content highlights */
-.modal-content .achievement-highlight {
-  color: var(--kotlin-color);
-  font-weight: bold;
-}
-
-.modal-content .tech-highlight {
-  color: var(--spring-color);
-  font-weight: bold;
-}
-
-.timeline-grid {
-  max-width: 800px;
-  margin: 0 auto;
-}
-
-.experience-root {
-  margin-bottom: calc(var(--spacing) * 8);
-  width: 800px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.experience-main {
-  background: rgba(0, 255, 255, 0.08);
-  border: 1px solid rgba(0, 255, 255, 0.2);
-  border-radius: 12px;
-  padding: calc(var(--spacing) * 3);
-  margin-bottom: calc(var(--spacing) * 4);
-}
-
-.experience-branches {
-  position: relative;
-  max-width: 500px;
-  padding-left: calc(var(--spacing) * 4);
-  margin: 0 auto; /* Center the branches container */
-}
-
-.experience-branch {
-  position: relative;
-  margin-bottom: calc(var(--spacing) * 4);
-}
-
-.branch-line {
-  position: absolute;
-  left: calc(var(--spacing) * -4);
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--primary);
-  opacity: 0.3;
-}
-
-.branch-line::before {
-  content: '';
-  position: absolute;
-  left: -4px;
-  top: calc(var(--spacing) * 2);
-  width: 10px;
-  height: 2px;
-  background: var(--primary);
-  opacity: 0.3;
-}
-
-.sub-experience {
-  background: rgba(0, 255, 255, 0.03);
-  padding: calc(var(--spacing) * 3);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-  border: 1px solid rgba(0, 255, 255, 0.1);
-}
-
-.sub-experience:hover {
-  transform: translateX(10px);
-  background: rgba(0, 255, 255, 0.05);
-  border-color: rgba(0, 255, 255, 0.2);
-}
-
-.experience-date {
-  color: var(--primary);
-  font-weight: bold;
-  margin-bottom: var(--spacing);
-}
-
-.experience-content h3 {
-  color: var(--text);
-  margin-bottom: var(--spacing);
-  font-size: 1.4rem;
-}
-
-.experience-content h4 {
-  color: var(--primary);
-  margin-bottom: var(--spacing);
-  font-size: 1.1rem;
-}
-
-.company {
-  color: var(--text-dark);
-  margin-bottom: var(--spacing);
-  font-size: 1.1rem;
-}
-
-.experience-details {
-  list-style: none;
-}
-
-.experience-details li {
-  margin-bottom: calc(var(--spacing) / 2);
-  position: relative;
-  padding-left: calc(var(--spacing) * 2);
-}
-
-.experience-details li.highlight {
-  color: var(--primary);
-  font-weight: bold;
-}
-
-.experience-details li::before {
-  content: '>';
-  position: absolute;
-  left: 0;
-  color: var(--primary);
-}
-
-.sub-experience ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-.sub-experience li {
-  margin-bottom: calc(var(--spacing) / 2);
-  position: relative;
-  padding-left: calc(var(--spacing) * 2);
-  font-size: 0.9rem;
-  color: var(--text);
-}
-
-.sub-experience li::before {
-  content: '•';
-  position: absolute;
-  left: var(--spacing);
-  color: var(--primary);
-}
-
-.projects-grid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: calc(var(--spacing) * 3);
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 0 var(--spacing);
-}
-
-.project-card {
-  background: rgba(0, 255, 255, 0.05);
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease, border-color 0.3s ease, background-color 0.3s ease;
-  border: 1px solid rgba(0, 255, 255, 0.1);
-  width: 100%;
-  max-width: 800px;
-  margin: 0 auto;
-  cursor: pointer;
-}
-
-.project-card:hover {
-  transform: translateY(-5px);
-  border-color: var(--primary);
-  background: rgba(0, 255, 255, 0.08);
-}
-
-.project-image {
-  width: 100%;
-  height: 300px;
-  overflow: hidden;
-  border-radius: 8px 8px 0 0;
-}
-
-.project-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease;
-}
-
-.project-card:hover .project-image img {
-  transform: scale(1.05);
-}
-
-.project-content {
-  padding: calc(var(--spacing) * 3);
-}
-
-.project-content h3 {
-  color: var(--primary);
-  margin-bottom: var(--spacing);
-  font-size: 1.4rem;
-}
-
-.project-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing);
-  margin-bottom: calc(var(--spacing) * 2);
-}
-
-.tech-tag {
-  background: rgba(156, 39, 176, 0.2);
-  color: var(--secondary);
-  padding: calc(var(--spacing) / 2) var(--spacing);
-  border-radius: 4px;
-  font-size: 0.8rem;
-}
-
-.modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.8);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-  padding: var(--spacing);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.modal.active {
-  display: flex;
-  opacity: 1;
-}
-
-.modal-content {
-  background: var(--bg-color);
-  border-radius: 12px;
-  max-width: 1200px;
-  width: 95%;
-  max-height: 90vh;
-  overflow-y: auto;
-  position: relative;
-  border: 1px solid var(--primary);
-}
-
-.modal-close {
-  position: sticky;
-  top: var(--spacing);
-  right: var(--spacing);
-  background: transparent;
-  border: none;
-  color: var(--primary);
-  cursor: pointer;
-  padding: var(--spacing);
-  float: right;
-  z-index: 2;
-}
-
-.modal-body {
-  padding: calc(var(--spacing) * 4);
-}
-
-.modal-header {
-  margin-bottom: calc(var(--spacing) * 4);
-}
-
-.modal-header h2 {
-  font-size: 2rem;
-  margin-bottom: var(--spacing);
-}
-
-.project-period {
-  color: var(--text-dark);
-  font-size: 0.9rem;
-}
-
-.project-gallery {
-  position: relative;
-  margin-bottom: calc(var(--spacing) * 4);
-}
-
-.gallery-container {
-  position: relative;
-  width: 100%;
-  height: 500px;
-  overflow: hidden;
-  border-radius: 8px;
-  margin-bottom: var(--spacing);
-}
-
-.gallery-slide {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-
-.gallery-slide.active {
-  opacity: 1;
-}
-
-.gallery-slide img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  background: rgba(0, 0, 0, 0.3);
-}
-
-.gallery-nav {
-  display: flex;
-  justify-content: center;
-  gap: var(--spacing);
-  margin-top: var(--spacing);
-}
-
-.gallery-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--text-dark);
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.gallery-dot.active {
-  background: var(--primary);
-  transform: scale(1.2);
-}
-
-.gallery-arrow {
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-  background: rgba(0, 0, 0, 0.5);
-  border: 1px solid var(--primary);
-  color: var(--primary);
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  z-index: 2;
-}
-
-.gallery-arrow:hover {
-  background: var(--primary);
-  color: var(--bg-color);
-}
-
-.gallery-arrow.prev {
-  left: 16px;
-}
-
-.gallery-arrow.next {
-  right: 16px;
-}
-
-.project-section {
-  margin-bottom: calc(var(--spacing) * 4);
-}
-
-.project-section h3 {
-  color: var(--primary);
-  margin-bottom: calc(var(--spacing) * 2);
-  font-size: 1.2rem;
-}
-
-.project-section ul {
-  list-style: none;
-  padding: 0;
-}
-
-.project-section li {
-  margin-bottom: var(--spacing);
-  padding-left: calc(var(--spacing) * 2);
-  position: relative;
-}
-
-.project-section li::before {
-  content: '•';
-  position: absolute;
-  left: 0;
-  color: var(--primary);
-}
-
-.tech-tags {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing);
-  margin-top: var(--spacing);
-}
-
-.background-grid {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
-                    linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
-  z-index: -2;
-}
-
-.background-dots {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(rgba(156, 39, 176, 0.1) 1px, transparent 1px);
-  background-size: 20px 20px;
-  z-index: -1;
-}
-
-.scroll-indicator {
-  position: absolute;
-  bottom: 10vh;
-  left: 50%;
-  transform: translateX(-50%);
-  text-align: center;
-  animation: fadeInOut 2s infinite;
-}
-
-.scroll-indicator span {
-  display: block;
-  margin-bottom: var(--spacing);
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-
-.arrow {
-  width: 20px;
-  height: 20px;
-  border-right: 2px solid var(--primary);
-  border-bottom: 2px solid var(--primary);
-  transform: rotate(45deg);
-  margin: 0 auto;
-}
-
-.skills-container {
-  width: 100%;
-  max-width: 200px;
-  margin: 2rem auto;
-  padding: 1rem;
-  background: rgba(0, 255, 255, 0.05);
-  border-radius: 12px;
-  border: 1px solid var(--primary);
-  box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-}
-
-.skill-item {
-  margin-bottom: 1.5rem;
-}
-
-.skill-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 0.5rem;
-}
-
-.skill-name {
-  font-size: 1rem;
-  color: var(--text);
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-
-.skill-level {
-  font-family: 'Press Start 2P', monospace;
-  font-size: 0.8rem;
-  color: var(--primary);
-}
-
-.skill-bar {
-  height: 12px;
-  background: rgba(0, 0, 0, 0.3);
-  border: 2px solid var(--primary);
-  border-radius: 6px;
-  overflow: hidden;
-  position: relative;
-}
-
-.skill-progress {
-  height: 100%;
-  background: var(--primary);
-  position: relative;
-  transition: width 1s ease;
-}
-
-.skill-progress::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: repeating-linear-gradient(
-    45deg,
-    transparent,
-    transparent 10px,
-    rgba(0, 0, 0, 0.1) 10px,
-    rgba(0, 0, 0, 0.1) 20px
-  );
-}
-
-.skill-progress.kotlin {
-  width: 90%;
-  background: var(--kotlin-color);
-}
-
-.skill-progress.spring {
-  width: 80%;
-  background: var(--spring-color);
-}
-
-.skill-progress.mysql {
-  width: 50%;
-  background: var(--mysql-color);
-}
-
-.skill-progress.java {
-  width: 40%;
-  background: var(--java-color);
-}
-
-.skill-progress.javascript {
-  width: 20%;
-  background: var(--js-color);
-}
-
-@keyframes powerUp {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.1);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-.skill-item {
-  animation: powerUp 0.5s ease forwards;
-  opacity: 0;
-}
-
-.skill-item:nth-child(1) { animation-delay: 0.1s; }
-.skill-item:nth-child(2) { animation-delay: 0.2s; }
-.skill-item:nth-child(3) { animation-delay: 0.3s; }
-.skill-item:nth-child(4) { animation-delay: 0.4s; }
-.skill-item:nth-child(5) { animation-delay: 0.5s; }
-
-.contact-info {
-  display: flex;
-  flex-direction: column;
-  gap: calc(var(--spacing) * 3);
-  margin-top: calc(var(--spacing) * 4);
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-.contact-item {
-  display: flex;
-  align-items: center;
-  gap: calc(var(--spacing) * 2);
-  padding: calc(var(--spacing) * 2);
-  background-color: rgba(0, 255, 255, 0.05);
-  border-radius: 8px;
-  transition: all 0.3s ease;
-}
-
-.contact-item:hover {
-  background-color: rgba(0, 255, 255, 0.1);
-  transform: translateX(10px);
-}
-
-.contact-item i {
-  color: var(--primary);
-  width: 24px;
-  height: 24px;
-}
-
-.contact-link {
-  color: var(--text);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.contact-link:hover {
-  color: var(--primary);
-}
-
-.contact-text {
-  color: var(--text);
-}
-
-/* Vertical Timeline Styles */
-.vertical-timeline {
-  position: relative;
-  max-width: 800px;
-  margin: 4rem auto;
-  padding: 2rem 0;
-}
-
-.timeline-line-vertical {
-  position: absolute;
-  left: 50%;
-  top: 0;
-  bottom: 0;
-  width: 2px;
-  background: var(--primary);
-  transform: translateX(-50%);
-}
-
-.timeline-item {
-  display: flex;
-  justify-content: flex-end;
-  padding-right: 30px;
-  position: relative;
-  margin: 2rem 0;
-  width: 50%;
-}
-
-.timeline-item:nth-child(odd) {
-  align-self: flex-end;
-  justify-content: flex-start;
-  padding-left: 30px;
-  padding-right: 0;
-  left: 50%;
-}
-
-.timeline-dot {
-  position: absolute;
-  right: -6px;
-  top: 20px;
-  width: 12px;
-  height: 12px;
-  background: var(--primary);
-  border-radius: 50%;
-  transition: all 0.3s ease;
-}
-
-.timeline-item:nth-child(odd) .timeline-dot {
-  right: auto;
-  left: -6px;
-}
-
-.timeline-content {
-  background: rgba(0, 255, 255, 0.05);
-  padding: 1.5rem;
-  border-radius: 8px;
-  border: 1px solid rgba(0, 255, 255, 0.1);
-  width: 100%;
-  max-width: 500px;
-  transition: all 0.3s ease;
-}
-
-.timeline-content:hover {
-  transform: translateY(-5px);
-  border-color: var(--primary);
-  background: rgba(0, 255, 255, 0.08);
-}
-
-.timeline-date {
-  color: var(--primary);
-  font-size: 0.9rem;
-  margin-bottom: 0.5rem;
-}
-
-.timeline-title {
-  color: var(--text);
-  font-size: 1.2rem;
-  margin-bottom: 1rem;
-}
-
-.timeline-description {
-  color: var(--text-dark);
-  font-size: 0.9rem;
-  margin-bottom: 1rem;
-}
-
-.timeline-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-top: 1rem;
-}
-
-.timeline-tech-tag {
-  background: rgba(156, 39, 176, 0.2);
-  color: var(--secondary);
-  padding: 0.25rem 0.5rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-}
-
-@media (max-width: 768px) {
-  header h1 {
-    font-size: 2.5rem;
-  }
-  
-  h2 {
-    font-size: 2rem;
-  }
-  
-  .section {
-    padding: calc(var(--spacing) * 8) 0;
-    margin: calc(var(--spacing) * 4) 0;
-  }
-
-  .profile-image {
-    width: 200px;
-    height: 200px;
-    margin-bottom: calc(var(--spacing) * 4);
-  }
-
-  .about-content {
-    padding: 0 var(--spacing);
-  }
-
-  .contact-info {
-    padding: 0 var(--spacing);
-  }
-
-  .contact-item {
-    padding: calc(var(--spacing) * 1.5);
-  }
-
-  .timeline-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .experience-item {
-    grid-template-columns: 1fr;
-    gap: var(--spacing);
-  }
-
-  .projects-grid {
-    grid-template-columns: 1fr;
-    padding: 0 var(--spacing);
-  }
-
-  .sub-experiences {
-    grid-template-columns: 1fr;
-  }
-  
-  .experience-content h3 {
-    font-size: 1.2rem;
-  }
-  
-  .experience-content h4 {
-    font-size: 1rem;
-  }
-
-  .experience-branches {
-    padding-left: calc(var(--spacing) * 2);
-  }
-
-  .branch-line {
-    left: calc(var(--spacing) * -2);
-  }
-
-  .sub-experience {
-    padding: calc(var(--spacing) * 2);
-  }
-
-  .sub-experience:hover {
-    transform: translateX(5px);
-  }
-
-  .timeline-item {
-    width: 100%;
-    padding-right: 0;
-    padding-left: 30px;
-    justify-content: flex-start;
-  }
-
-  .timeline-item:nth-child(odd) {
-    left: 0;
-  }
-
-  .timeline-line-vertical {
-    left: 0;
-  }
-
-  .timeline-dot {
-    left: -6px;
-    right: auto;
-  }
-
-  .timeline-content {
-    max-width: 100%;
-  }
-
-  .experience-root {
-    width: 100%;
-    padding: 0 var(--spacing);
-  }
-}
-
-@media (prefers-reduced-motion) {
-  .scroll-indicator {
-    animation: none;
-  }
-  
-  .arrow {
-    animation: none;
-  }
-
-  .contact-item:hover {
-    transform: none;
-  }
-
-  .profile-photo:hover {
-    transform: none;
-  }
-
-  .experience-item:hover {
-    transform: none;
-  }
-
-  .project-card:hover {
-    transform: none;
-  }
-}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code for Systems, Think for People</title>
+  <link rel="stylesheet" href="src/styles/main.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;700&family=Press+Start+2P&display=swap" rel="stylesheet">
+  <meta name="description" content="Interactive developer portfolio with a timeline of career milestones">
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <h1>KIM YANG SOO</h1>
+      <h2>Code for Systems, <br/> Think for People</h2>
+      <div class="scroll-indicator">
+        <span>Scroll Down</span>
+        <div class="arrow"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="intro" class="section">
+      <div class="container">
+        <div class="profile-image">
+          <img src="/images/portfolio.jpeg" alt="김양수의 프로필 사진" class="profile-photo">
+        </div>
+        <h2>Backend Developer</h2>
+        <p>역할의 경계를 짓지 않고, 사용자와 팀을 위해 일하는 백엔드개발자 김양수입니다.</p>
+
+        <div class="skills-container">
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Kotlin</span>
+              <span class="skill-level">LV.9</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress kotlin"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Spring</span>
+              <span class="skill-level">LV.8</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress spring"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">MySQL</span>
+              <span class="skill-level">LV.5</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress mysql"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">Java</span>
+              <span class="skill-level">LV.4</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress java"></div>
+            </div>
+          </div>
+          
+          <div class="skill-item">
+            <div class="skill-header">
+              <span class="skill-name">JavaScript</span>
+              <span class="skill-level">LV.2</span>
+            </div>
+            <div class="skill-bar">
+              <div class="skill-progress javascript"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="about" class="section">
+      <div class="container">
+        <h2>About Me</h2>
+        <div class="about-content">
+          <p><strong>팀과 함께 일할 수 있는 법을 늘 고민합니다.</strong></p>
+          <p>기술적으로 단단한 구조를 만들되, 그 안에 사용자의 편리함을 꼭 담으려고 노력합니다.</p>
+          <p><strong>저는 백엔드 개발자이지만, 역할의 경계를 짓지 않고, 필요하다면 기획이나 프론트에도 참여합니다.</strong></p>
+          <p>결국 내가 만든 기능을 누군가가 더 편하게, 더 유용하게 쓸 수 있다면 그게 가장 큰 보람이라고 생각합니다.</p>
+          <p><strong>문제 해결 그 자체보다, 사용자의 마음을 움직이는 기능을 만들고 싶습니다.</strong></p>
+        </div>
+      </div>
+    </section>
+
+    <section id="experience" class="section">
+      <div class="container">
+        <h2>Experience</h2>
+        <div class="timeline-grid">
+          <div class="experience-root">
+            <div class="experience-main">
+              <div class="experience-date">2023.8 - Present</div>
+              <div class="experience-content">
+                <h3>매직에꼴</h3>
+                <div class="company">Backend Developer</div>
+                <ul class="experience-details">
+                  <li>교육관리 플랫폼(LMS) 프로젝트 기획부터 설계, 개발까지 전반에 참여</li>
+                  <li class="highlight">
+                    <span class="achievement-number">80%</span> 
+                    <span class="achievement-result">영상 관리 시스템 운영 비용 절감</span>
+                  </li>
+                  <li class="highlight">
+                    <span class="achievement-number">30%</span> 
+                    <span class="achievement-result">중복 개발 리소스 절감</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div class="experience-branches">
+              <div class="experience-branch">
+                <div class="branch-line"></div>
+                <div class="sub-experience">
+                  <h4>수강생 과제 및 활동 시스템 개발</h4>
+                  <ul>
+                    <li>정해진 기간 내 개발 완료</li>
+                    <li>기관/캠페인/공지/활동 로그 등 다수 API 설계 및 구현</li>
+                  </ul>
+                </div>
+              </div>
+              
+              <div class="experience-branch">
+                <div class="branch-line"></div>
+                <div class="sub-experience">
+                  <h4>개발팀 업무 문서화</h4>
+                  <ul>
+                    <li>에러코드, 서버 인프라 정보 등 정리 및 체계화</li>
+                    <li>프론트와 커뮤니케이션 효율 증대</li>
+                    <li>불필요한 인프라 비용 20% 절감</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div class="vertical-timeline">
+              <div class="timeline-line-vertical"></div>
+              
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <div class="project-card" onclick="openProjectModal(1)">
+                    <div class="project-image">
+                      <img src="/images/attendance/attendance03.png" alt="Project 1" />
+                    </div>
+                    <div class="project-content">
+                      <h3>출결관리 시스템 개발</h3>
+                      <div class="project-tech">
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">Kotlin</span>
+                        <span class="tech-tag">MySQL</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="timeline-item">
+                <div class="timeline-dot"></div>
+                <div class="timeline-content">
+                  <div class="project-card" onclick="openProjectModal(2)">
+                    <div class="project-image">
+                      <img src="/images/wecandeo/wecandeo_process.png" alt="Project 2" />
+                    </div>
+                    <div class="project-content">
+                      <h3>Wecandeo 영상 기능 마이그레이션</h3>
+                      <div class="project-tech">
+                        <span class="tech-tag">Kotlin</span>
+                        <span class="tech-tag">Spring Boot</span>
+                        <span class="tech-tag">REST API</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="experience-main">
+            <div class="experience-date">2022.12 - 2023.6</div>
+            <div class="experience-content">
+              <h3>비트캠프</h3>
+              <div class="company">Java 웹개발자 국비교육과정 수료</div>
+              <ul class="experience-details">
+                <li>Spring 기반 웹 서비스 개발의 기초부터 실전까지 프로젝트로 경험</li>
+                <li>Java, Spring, JavaScript, MySQL</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="vertical-timeline">
+            <div class="timeline-line-vertical"></div>
+            
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="project-card" onclick="openProjectModal(3)">
+                  <div class="project-image">
+                    <img src="/images/yaguroute/yaguroute1.png" alt="Project 3" />
+                  </div>
+                  <div class="project-content">
+                    <h3>YaguRoute</h3>
+                    <div class="project-tech">
+                      <span class="tech-tag">Java</span>
+                      <span class="tech-tag">Spring</span>
+                      <span class="tech-tag">MySQL</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <div class="project-card" onclick="openProjectModal(4)">
+                  <div class="project-image">
+                    <img src="/images/shopping/shop2.png" alt="Project 4" />
+                  </div>
+                  <div class="project-content">
+                    <h3>굿즈 쇼핑몰</h3>
+                    <div class="project-tech">
+                      <span class="tech-tag">Java</span>
+                      <span class="tech-tag">Spring</span>
+                      <span class="tech-tag">Oracle</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container">
+        <h2>Let's Connect</h2>
+        <div class="contact-info">
+          <div class="contact-item">
+            <i data-lucide="mail"></i>
+            <a href="mailto:didtn1233@gmail.com" class="contact-link">didtn1233@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <i data-lucide="phone"></i>
+            <a href="tel:+82-010-9783-3446" class="contact-link">+82 010 9783 3446</a>
+          </div>
+          <div class="contact-item">
+            <i data-lucide="map-pin"></i>
+            <span class="contact-text">서울</span>
+          </div>
+          <div class="contact-item">
+            <i data-lucide="github"></i>
+            <a href="https://github.com/softcoding03" target="_blank" rel="noopener noreferrer" class="contact-link">@softcoding03</a>
+          </div>
+          <div class="contact-item">
+            <i data-lucide="book-open"></i>
+            <a href="https://softpattern.tistory.com" target="_blank" rel="noopener noreferrer" class="contact-link">softpattern.tistory.com</a>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="timeline-container">
+    <div class="timeline">
+      <div class="timeline-line"></div>
+      <div id="timeline-markers"></div>
+      <div id="character"></div>
+    </div>
+  </div>
+
+  <div class="background-grid"></div>
+  <div class="background-dots"></div>
+
+  <div id="project-modal" class="modal">
+    <div class="modal-content">
+      <button class="modal-close" onclick="closeProjectModal()">
+        <i data-lucide="x"></i>
+      </button>
+      <div class="modal-body">
+      </div>
+    </div>
+  </div>
+
+  <script type="module" src="src/scripts/utils.js"></script>
+  <script type="module" src="src/data/projects.js"></script>
+  <script type="module" src="src/scripts/character.js"></script>
+  <script type="module" src="src/scripts/timeline.js"></script>
+  <script type="module" src="src/scripts/panels.js"></script>
+  <script type="module" src="src/scripts/modal.js"></script>
+  <script type="module" src="src/scripts/main.js"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script>
+    lucide.createIcons();
+  </script>
+</body>
+</html>
