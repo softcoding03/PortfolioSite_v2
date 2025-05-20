@@ -11,6 +11,8 @@
   const characterEl = document.getElementById('character');
   const timelineEl = document.querySelector('.timeline');
   const sections = document.querySelectorAll('.section');
+  const skillsContainer = document.querySelector('.skills-container');
+  const introSection = document.getElementById('intro');
   
   // Initialize application
   function init() {
@@ -27,6 +29,9 @@
     
     // Create SVG placeholder files for milestones
     createSvgPlaceholders();
+    
+    // Setup skills container observer
+    setupSkillsObserver();
     
     // Initial update
     requestAnimationFrame(update);
@@ -66,6 +71,46 @@
     sections.forEach(section => {
       observer.observe(section);
     });
+  }
+  
+  // Setup skills container intersection observer
+  function setupSkillsObserver() {
+    if (!skillsContainer || !introSection) return;
+    
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          skillsContainer.classList.add('skills-visible');
+          updateSkillsPosition();
+        } else {
+          skillsContainer.classList.remove('skills-visible');
+        }
+      });
+    }, { threshold: 0.2 });
+    
+    observer.observe(introSection);
+  }
+  
+  // Update skills container position based on scroll
+  function updateSkillsPosition() {
+    if (!skillsContainer || !introSection) return;
+    
+    const introRect = introSection.getBoundingClientRect();
+    const introTop = introRect.top;
+    const introBottom = introRect.bottom;
+    const windowHeight = window.innerHeight;
+    
+    if (introTop <= 0 && introBottom >= 0) {
+      // Section is partially visible, follow scroll
+      const scrollProgress = Math.abs(introTop) / (introRect.height - windowHeight);
+      const maxScroll = introRect.height - windowHeight;
+      const translateY = Math.min(scrollProgress * maxScroll, maxScroll);
+      
+      skillsContainer.style.transform = `translateY(${translateY}px)`;
+    } else if (introTop > 0) {
+      // Reset position when above intro section
+      skillsContainer.style.transform = 'translateY(0)';
+    }
   }
   
   // Setup touch events for mobile
@@ -116,6 +161,7 @@
       requestAnimationFrame(() => {
         scrollPercentage = utils.getScrollPercentage();
         updateAll(scrollPercentage);
+        updateSkillsPosition();
         ticking = false;
       });
       ticking = true;
