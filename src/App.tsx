@@ -1,10 +1,31 @@
 import React from 'react';
+import Header from './components/Header';
+import Intro from './components/Intro';
+import About from './components/About';
+import Experience from './components/Experience';
+import Contact from './components/Contact';
+import './styles/main.css';
 
 function App() {
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <p>Start prompting (or editing) to see magic happen :)</p>
-    </div>
+    <>
+      <Header />
+      <main>
+        <Intro />
+        <About />
+        <Experience />
+        <Contact />
+      </main>
+      <div className="timeline-container">
+        <div className="timeline">
+          <div className="timeline-line"></div>
+          <div id="timeline-markers"></div>
+          <div id="character"></div>
+        </div>
+      </div>
+      <div className="background-grid"></div>
+      <div className="background-dots"></div>
+    </>
   );
 }
 
