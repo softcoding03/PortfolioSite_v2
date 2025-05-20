@@ -1,7 +1,8 @@
 /* Main styles */
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'timeline.css';
+@import 'character.css';
+@import 'panels.css';
+@import 'animations.css';
 
 :root {
   --bg-color: #121212;
@@ -207,7 +208,7 @@ p {
   position: relative;
   max-width: 500px;
   padding-left: calc(var(--spacing) * 4);
-  margin: 0 auto; /* Center the branches container */
+  margin: 0 auto;
 }
 
 .experience-branch {
@@ -628,6 +629,16 @@ p {
   border-radius: 12px;
   border: 1px solid var(--primary);
   box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
+  position: fixed;
+  right: -220px;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: right 0.5s ease, transform 0.5s ease;
+  z-index: 100;
+}
+
+.skills-container.skills-visible {
+  right: 20px;
 }
 
 .skill-item {
@@ -983,6 +994,18 @@ p {
   .experience-root {
     width: 100%;
     padding: 0 var(--spacing);
+  }
+
+  .skills-container {
+    position: relative;
+    right: auto;
+    top: auto;
+    transform: none;
+    margin: 2rem auto;
+  }
+  
+  .skills-container.skills-visible {
+    right: auto;
   }
 }
 
