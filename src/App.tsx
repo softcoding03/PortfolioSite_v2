@@ -1,11 +1,29 @@
 import React from 'react';
+import Header from './components/Header';
+import Intro from './components/Intro';
+import About from './components/About';
+import ProjectModal from './components/ProjectModal';
+import { Project } from './types';
+import projects from './data/projects';
 
-function App() {
+const App: React.FC = () => {
+  const [selectedProject, setSelectedProject] = React.useState<Project>();
+
   return (
-    <div className="min-h-screen bg-gray-100 flex items-center justify-center">
-      <p>Start prompting (or editing) to see magic happen :)</p>
-    </div>
+    <>
+      <Header />
+      <main>
+        <Intro />
+        <About />
+      </main>
+      <div className="background-grid"></div>
+      <div className="background-dots"></div>
+      <ProjectModal 
+        project={selectedProject} 
+        onClose={() => setSelectedProject(undefined)} 
+      />
+    </>
   );
-}
+};
 
 export default App;
