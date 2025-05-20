@@ -1,5 +1,16 @@
-// Project data
-const projects = [
+interface Project {
+  id: number;
+  title: string;
+  description: string;
+  period: string;
+  techStack: string[];
+  images: string[];
+  features: string[];
+  achievements: string[];
+  insights: string[];
+}
+
+export const projects: Project[] = [
   {
     id: 1,
     title: "출결관리 시스템 개발",
@@ -7,11 +18,11 @@ const projects = [
     period: "2024.12 - 2025.02",
     techStack: ["Kotlin", "Spring Boot", "MySQL", "Exposed DAO"],
     images: [
-      "/images/attendance/attendance_domain.png",
-      "/images/attendance/attendance_process.png",
-      "/images/attendance/attendance01.png",
-      "/images/attendance/attendance02.png",
-      "/images/attendance/attendance03.png"
+      "./images/attendance/attendance_domain.png",
+      "./images/attendance/attendance_process.png",
+      "./images/attendance/attendance01.png",
+      "./images/attendance/attendance02.png",
+      "./images/attendance/attendance03.png"
     ],
     features: [
       "초기 기획부터 요구사항 정의, 도메인 설계, API 개발 전반 주도",
@@ -37,11 +48,11 @@ const projects = [
     period: "2024.11 - 2024.12",
     techStack: ["Kotlin", "Spring Boot", "REST API", "Wecandeo API", "Object Storage"],
     images: [
-      "/images/wecandeo/wecandeo_process.png",
-      "/images/wecandeo/wecandeo01.png",
-      "/images/wecandeo/wecandeo02.png",
-      "/images/wecandeo/wecandeo03.png",
-      "/images/wecandeo/wecandeo04.png"
+      "./images/wecandeo/wecandeo_process.png",
+      "./images/wecandeo/wecandeo01.png",
+      "./images/wecandeo/wecandeo02.png",
+      "./images/wecandeo/wecandeo03.png",
+      "./images/wecandeo/wecandeo04.png"
     ],
     features: [
       "기존 시스템 구조 분석 및 정리 -> 전체 흐름을 다이어그램으로 시각화",
@@ -66,14 +77,14 @@ const projects = [
     period: "2023.04 - 2023.06",
     techStack: ["Java", "Spring", "MyBatis", "MySQL", "JavaScript", "jQuery", "Naver Cloud"],
     images: [
-      "/images/yaguroute/yaguroute1.png",
-      "/images/yaguroute/yaguroute2.png",
-      "/images/yaguroute/yaguroute3.png",
-      "/images/yaguroute/yaguroute4.png",
-      "/images/yaguroute/yaguroute5.png",
-      "/images/yaguroute/yaguroute6.png",
-      "/images/yaguroute/yaguroute7.png",
-      "/images/yaguroute/yaguroute8.png"
+      "./images/yaguroute/yaguroute1.png",
+      "./images/yaguroute/yaguroute2.png",
+      "./images/yaguroute/yaguroute3.png",
+      "./images/yaguroute/yaguroute4.png",
+      "./images/yaguroute/yaguroute5.png",
+      "./images/yaguroute/yaguroute6.png",
+      "./images/yaguroute/yaguroute7.png",
+      "./images/yaguroute/yaguroute8.png"
     ],
     features: [
       "티켓 판매/구매 시스템",
@@ -99,11 +110,11 @@ const projects = [
     period: "2023.02 - 2023.03",
     techStack: ["Java", "Spring", "MyBatis", "Oracle", "JavaScript", "jQuery", "PortOne"],
     images: [
-      "/images/shopping/shop1.png",
-      "/images/shopping/shop1.2.png",
-      "/images/shopping/shop2.png",
-      "/images/shopping/shop3.png",
-      "/images/shopping/shop4.png"
+      "./images/shopping/shop1.png",
+      "./images/shopping/shop1.2.png",
+      "./images/shopping/shop2.png",
+      "./images/shopping/shop3.png",
+      "./images/shopping/shop4.png"
     ],
     features: [
       "회원/상품/구매 관리 CRUD 전반 구현",
@@ -119,7 +130,4 @@ const projects = [
       "프로젝트의 전 과정을 독립적으로 수행하며 백엔드와 프론트를 수행했습니다."
     ]
   }
-];
-
-// Export for use in other files
-window.projects = projects;
+]; 
