@@ -52,32 +52,31 @@ const projectSkillIncreases = [
 
 const SkillsProgress: React.FC = () => {
   const [skills, setSkills] = useState<Skill[]>(initialSkills);
-  const [refs, setRefs] = useState<{ [key: string]: any }>({});
+
+  const [attendanceRef, attendanceInView] = useInView({ threshold: 0.5, triggerOnce: true });
+  const [wecandeoRef, wecandeoInView] = useInView({ threshold: 0.5, triggerOnce: true });
+  const [yagurouteRef, yagurouteInView] = useInView({ threshold: 0.5, triggerOnce: true });
+  const [shoppingRef, shoppingInView] = useInView({ threshold: 0.5, triggerOnce: true });
 
   useEffect(() => {
-    const newRefs: { [key: string]: any } = {};
-    projectSkillIncreases.forEach(project => {
-      const [ref, inView] = useInView({
-        threshold: 0.5,
-        triggerOnce: true
-      });
-      newRefs[project.id] = { ref, inView };
-    });
-    setRefs(newRefs);
-  }, []);
+    const triggers = [
+      { inView: attendanceInView, increases: projectSkillIncreases[0].increases },
+      { inView: wecandeoInView, increases: projectSkillIncreases[1].increases },
+      { inView: yagurouteInView, increases: projectSkillIncreases[2].increases },
+      { inView: shoppingInView, increases: projectSkillIncreases[3].increases }
+    ];
 
-  useEffect(() => {
-    projectSkillIncreases.forEach(project => {
-      if (refs[project.id]?.inView) {
-        setSkills(prevSkills => 
-          prevSkills.map(skill => ({
+    triggers.forEach(({ inView, increases }) => {
+      if (inView) {
+        setSkills(prev =>
+          prev.map(skill => ({
             ...skill,
-            currentLevel: skill.currentLevel + (project.increases[skill.name] || 0)
+            currentLevel: skill.currentLevel + (increases[skill.name] || 0)
           }))
         );
       }
     });
-  }, [refs]);
+  }, [attendanceInView, wecandeoInView, yagurouteInView, shoppingInView]);
 
   return (
     <div className="fixed right-8 top-1/2 transform -translate-y-1/2 z-50 bg-black/80 p-4 rounded-lg border border-cyan-500 backdrop-blur-sm">
