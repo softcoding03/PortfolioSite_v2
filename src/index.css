@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  .interactive-dot {
+    @apply absolute w-1 h-1 rounded-full bg-cyan-400/30 transition-transform duration-300;
+  }
+}
+
+:root {
+  --bg-color: #121212;
+  --primary: #00ffff;
+  --secondary: #9c27b0;
+  --text: #e0e0e0;
+  --text-dark: #a0a0a0;
+  --panel-bg: rgba(30, 30, 30, 0.9);
+  --timeline-height: 2px;
+  --spacing: 8px;
+  --character-size: 16px;
+  --timeline-bottom: 15vh;
+  
+  /* Skill colors */
+  --kotlin-color: #A97BFF;
+  --spring-color: #6DB33F;
+  --mysql-color: #00758F;
+  --java-color: #E76F00;
+  --js-color: #F7DF1E;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'JetBrains Mono', monospace;
+  background-color: var(--bg-color);
+  color: var(--text);
+  line-height: 1.5;
+  overflow-x: hidden;
+}
